@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using UmutcanDev.Application.Interfaces;
 using UmutcanDev.Infrastructure.Data;
 using UmutcanDev.Infrastructure.Services;
+using Microsoft.AspNetCore.Identity.UI.Services; // IEmailSender
+using Microsoft.Extensions.Configuration;
 
 namespace UmutcanDev.Presentation
 {
@@ -12,30 +14,40 @@ namespace UmutcanDev.Presentation
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Connection string ve DbContext konfigürasyonu
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                 ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            // Geliþtirme ortamý için özel hata sayfalarý
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            // Identity konfigurasyonu
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true; // Hesap doðrulama aktif (isteðe baðlý)
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
-            // MVC ve Razor Pages
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            });
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
-            // Servisleri DI container'a ekle
+            // Uygulama servisleri
             builder.Services.AddScoped<ISergiServices, SergiServices>();
+            builder.Services.AddScoped<IGeriBildirimServices, GeriBildirimServices>();
+
+            // EmailSettings'i appsettings.json'dan al ve EmailSender servisini ekle
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
 
             var app = builder.Build();
 
-            // Ortam bazlý middleware ayarlarý
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -48,18 +60,17 @@ namespace UmutcanDev.Presentation
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
-            app.UseAuthentication();  // Authentication middleware eksik olabilir
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            // Area route
-            app.MapControllerRoute(
-                name: "areas",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+            // Alanlý routing
+            app.MapAreaControllerRoute(
+                name: "AdminArea",
+                areaName: "Admin",
+                pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
-            // Default route
+            // Varsayýlan routing
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

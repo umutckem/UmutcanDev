@@ -1,0 +1,490 @@
+﻿@model List<UmutcanDev.Core.Model.GeriBildirim>
+
+@{
+    ViewData["Title"] = "Geri Bildirimler";
+}
+
+<div class="feedback-container">
+    <div class="feedback-header">
+        <div class="header-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"/>
+            </svg>
+        </div>
+        <h1>Geri Bildirimler</h1>
+        <p>Kullanıcılardan gelen mesajları yönetin</p>
+    </div>
+
+    <div class="search-section">
+        <form method="get" asp-action="Index" class="search-form">
+            <div class="search-input-group">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                <input type="text" name="search" value="@(ViewData["Search"])" placeholder="Geri bildirim ara..." class="search-input" />
+                <button type="submit" class="search-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="feedback-stats">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>@(Model?.Count ?? 0)</h3>
+                <p>Toplam Mesaj</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>0</h3>
+                <p>Bugünkü Mesaj</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feedback-list">
+        @if (Model == null || !Model.Any())
+        {
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4H4.98zm9.54 7H13.5a.5.5 0 0 1 0 1h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0-1H1.54l-.61-.61A.5.5 0 0 1 0 10.5V9a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.16.36l-.61.61z"/>
+                    </svg>
+                </div>
+                <h3>Henüz Geri Bildirim Yok</h3>
+                <p>Kullanıcılardan gelen mesajlar burada görünecek</p>
+            </div>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <div class="feedback-card" data-aos="fade-up">
+                    <div class="feedback-header-card">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                            </div>
+                            <div class="user-details">
+                                <h4>@item.AdSoyad</h4>
+                                <span class="user-email">@item.EMail</span>
+                            </div>
+                        </div>
+                        <div class="feedback-actions">
+                            <form method="post" asp-action="Sil" asp-route-id="@item.Id" onsubmit="return confirm('Bu geri bildirimi silmek istediğinize emin misiniz?');" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn-delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="feedback-content">
+                        <div class="feedback-subject">
+                            <h5>@item.Konu</h5>
+                        </div>
+                        <div class="feedback-message">
+                            <p>@item.Mesaj</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="back-button-section">
+        <a href="@Url.Action("Index", "AdminPanel", new { area = "Admin" })" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            <span>Geri Dön</span>
+        </a>
+    </div>
+</div>
+
+<style>
+    :root {
+        --primary-color: #4361ee;
+        --primary-light: #4895ef;
+        --secondary-color: #3f37c9;
+        --success-color: #28a745;
+        --danger-color: #dc3545;
+        --dark-color: #1a1a2e;
+        --light-color: #f8f9fa;
+        --border-radius: 12px;
+        --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+    }
+
+    .feedback-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7ff 0%, #e0e7ff 100%);
+    }
+
+    .feedback-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+    }
+
+    .header-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border-radius: 50%;
+        color: white;
+        font-size: 2rem;
+    }
+
+    .feedback-header h1 {
+        color: var(--dark-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .feedback-header p {
+        color: #6c757d;
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    .search-section {
+        margin-bottom: 2rem;
+    }
+
+    .search-form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .search-input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        color: #6c757d;
+        z-index: 2;
+    }
+
+    .search-input {
+        flex: 1;
+        border: none;
+        padding: 1rem 1rem 1rem 3rem;
+        font-size: 1rem;
+        outline: none;
+        background: transparent;
+    }
+
+    .search-button {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .search-button:hover {
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
+
+    .feedback-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .stat-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .stat-content h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin: 0;
+    }
+
+    .stat-content p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .feedback-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .feedback-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .feedback-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .feedback-header-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .user-details h4 {
+        margin: 0;
+        color: var(--dark-color);
+        font-weight: 600;
+    }
+
+    .user-email {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .feedback-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .btn-delete {
+        background: var(--danger-color);
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .btn-delete:hover {
+        background: #c82333;
+        transform: scale(1.1);
+    }
+
+    .feedback-content {
+        margin-top: 1rem;
+    }
+
+    .feedback-subject h5 {
+        color: var(--dark-color);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .feedback-message p {
+        color: #6c757d;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+    }
+
+    .empty-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 2rem;
+        background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6c757d;
+        font-size: 3rem;
+    }
+
+    .empty-state h3 {
+        color: var(--dark-color);
+        margin-bottom: 1rem;
+    }
+
+    .empty-state p {
+        color: #6c757d;
+        font-size: 1.1rem;
+    }
+
+    .back-button-section {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    }
+
+    .btn-back:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+        color: white;
+        text-decoration: none;
+    }
+
+    @@media (max-width: 768px) {
+        .feedback-container {
+            padding: 1rem;
+        }
+
+        .feedback-header h1 {
+            font-size: 2rem;
+        }
+
+        .feedback-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .feedback-header-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .user-info {
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Kart animasyonları
+        const feedbackCards = document.querySelectorAll('.feedback-card');
+        feedbackCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Arama input animasyonu
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) {
+            searchInput.addEventListener('focus', function() {
+                this.parentElement.style.boxShadow = '0 8px 25px rgba(67, 97, 238, 0.3)';
+            });
+            
+            searchInput.addEventListener('blur', function() {
+                this.parentElement.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+            });
+        }
+    });
+</script>

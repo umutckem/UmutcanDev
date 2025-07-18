@@ -13,6 +13,7 @@ namespace UmutcanDev.Infrastructure.Data
     {
 
         public DbSet<Sergi> Sergis { get; set; }
+        public DbSet<GeriBildirim> GeriBildirimler { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
