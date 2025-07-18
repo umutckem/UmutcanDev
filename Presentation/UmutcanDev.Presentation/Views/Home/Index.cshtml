@@ -1,0 +1,179 @@
+﻿@model IEnumerable<UmutcanDev.Core.Model.Sergi>
+
+@{
+    ViewData["Title"] = "Umutcan'ın Portföyü";
+}
+
+<!-- Modern Giriş ve Ben Kimim Bölümü -->
+<section class="container py-5" style="max-width: 900px;" data-aos="fade-up">
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQFBJazvS4ugmQ/profile-displayphoto-shrink_800_800/B56ZR2ebdNGsAc-/0/1737154476540?e=1755734400&v=beta&t=2tgXs0gkACmoyOYpwKoBiQabwAlR7KrodOigKQX8u54" class="rounded-circle shadow header-profile-img" style="width:140px; height:140px; object-fit:cover; border:5px solid #fff;" alt="Profil Fotoğrafı" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="fw-bold mb-2" style="color:#1e3c72;">Ben Kimim?</h2>
+            <p class="lead mb-2" style="font-size:1.15rem;">Merhaba! Ben <b>Umutcan Kemahlı</b>, .NET ve modern web teknolojileriyle ilgilenen bir yazılım geliştiricisiyim. Kullanıcı odaklı, yenilikçi ve sürdürülebilir projeler üretmeyi seviyorum. Kod yazmak, yeni teknolojiler öğrenmek ve kendimi geliştirmek benim için bir tutku.</p>
+            <ul class="list-unstyled text-muted mb-0">
+                <li><i class="bi bi-geo-alt me-1"></i> Adana, Türkiye</li>
+                <li><i class="bi bi-mortarboard me-1"></i> Bilgisayar Mühendisi</li>
+                <li><i class="bi bi-briefcase me-1"></i> Back-End & Takım Çalışması</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Yetenekler Bölümü -->
+<section class="container py-5" data-aos="fade-up">
+    <h2 class="fw-bold mb-4" style="color:#2a5298;">Yetenekler</h2>
+    <div class="row g-4">
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">⚙️</span>
+                <h6 class="fw-semibold mt-2 mb-1">ASP.NET MVC</h6>
+                <small class="text-muted">Web Uygulamaları</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">📱</span>
+                <h6 class="fw-semibold mt-2 mb-1">.NET MAUI</h6>
+                <small class="text-muted">Mobil & Cross Platform</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">🔌</span>
+                <h6 class="fw-semibold mt-2 mb-1">Arduino</h6>
+                <small class="text-muted">Donanım & IoT</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">💻</span>
+                <h6 class="fw-semibold mt-2 mb-1">C++</h6>
+                <small class="text-muted">Algoritma & Sistem</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="500">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">☕</span>
+                <h6 class="fw-semibold mt-2 mb-1">Java</h6>
+                <small class="text-muted">OOP & Uygulama</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="600">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">🗄️</span>
+                <h6 class="fw-semibold mt-2 mb-1">SQL Server</h6>
+                <small class="text-muted">Veritabanı Yönetimi</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="700">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">🎮</span>
+                <h6 class="fw-semibold mt-2 mb-1">Unity</h6>
+                <small class="text-muted">Oyun Geliştirme</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="800">
+            <div class="bg-white rounded-4 shadow-sm p-4 text-center h-100 skill-card">
+                <span style="font-size:2.2rem;">🌐</span>
+                <h6 class="fw-semibold mt-2 mb-1">ASP.NET Core</h6>
+                <small class="text-muted">Modern Web API</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sergiler Bölümü (Projelerim) -->
+<section class="container py-5">
+    <div class="d-flex align-items-center mb-4" data-aos="fade-right">
+        <i class="bi bi-lightbulb display-6 me-2 text-warning"></i>
+        <div>
+            <h2 class="fw-bold mb-0" style="color:#1e3c72;">Projelerim</h2>
+            <small class="text-muted">Gerçekleştirdiğim bazı projelerim aşağıda yer alıyor.</small>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @if (Model != null && Model.Any())
+        {
+            int aosDelay = 0;
+            foreach (var sergi in Model)
+            {
+                if (sergi == null) { continue; }
+
+                <div class="col" data-aos="fade-up" data-aos-delay="@aosDelay">
+                    <div class="card h-100 shadow-sm border-0 card-portfolio">
+                        @if (!string.IsNullOrWhiteSpace(sergi.ResimUrl))
+                        {
+                            <img src="@sergi.ResimUrl" class="card-img-top" alt="@sergi.ProjeAdi" style="object-fit:cover; height:180px;" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title fw-semibold">
+                                @(!string.IsNullOrWhiteSpace(sergi.ProjeAdi) ? sergi.ProjeAdi : "Proje Adı Yok")
+                            </h5>
+                            <p class="card-text text-muted">
+                                @(!string.IsNullOrWhiteSpace(sergi.Aciklama) ? sergi.Aciklama : "Açıklama Yok")
+                            </p>
+
+                            @if (sergi.TeknolojilerListesi != null && sergi.TeknolojilerListesi.Any())
+                            {
+                                <div class="mt-2">
+                                    <span class="fw-bold small text-secondary d-block mb-1">Teknolojiler:</span>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        @foreach (var tech in sergi.TeknolojilerListesi)
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(tech))
+                                            {
+                                                <span class="tech-badge">@tech</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                @(sergi.OlusturmaTarihi?.ToString("MM.yyyy") ?? "Tarih yok")
+                            </small>
+                            @if (!string.IsNullOrWhiteSpace(sergi.GithubUrl))
+                            {
+                                <a href="@sergi.GithubUrl" target="_blank" class="btn btn-sm btn-outline-dark d-flex align-items-center">
+                                    <i class="bi bi-github me-1"></i> GitHub
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                aosDelay += 100;
+            }
+        }
+        else
+        {
+            <div class="col">
+                <div class="alert alert-info text-center w-100" data-aos="fade-in">
+                    Henüz gösterilecek proje yok.
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- Bana Ulaşın Bölümü -->
+<section class="container py-5" data-aos="fade-up">
+    <div class="bg-white rounded-4 shadow-sm p-4 text-center mx-auto" style="max-width: 500px;">
+        <h3 class="fw-bold mb-3" style="color:#1e3c72;">Bana Ulaşın</h3>
+        <p class="text-muted mb-4">Projelerim, işbirliği veya sorularınız için bana ulaşabilirsiniz.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://www.instagram.com/umutcan_kemahli/" target="_blank" class="btn btn-outline-danger social-btn" style="border-radius:2rem; font-size:1.2rem;">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/umutcan-kemahl%C4%B1-0ab41a31a/" target="_blank" class="btn btn-outline-primary social-btn" style="border-radius:2rem; font-size:1.2rem;">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://github.com/umutckem" target="_blank" class="btn btn-outline-dark social-btn" style="border-radius:2rem; font-size:1.2rem;">
+                <i class="bi bi-github"></i>
+            </a>
+        </div>
+    </div>
+</section>

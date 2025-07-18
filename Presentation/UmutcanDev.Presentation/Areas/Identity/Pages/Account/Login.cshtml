@@ -1,0 +1,148 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+    body {
+        background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+    }
+
+    .login-card {
+        background: rgba(255,255,255,0.97);
+        border-radius: 2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        border: 1px solid rgba(255,255,255,0.18);
+        backdrop-filter: blur(4px);
+        max-width: 420px;
+        width: 100%;
+        margin: 40px auto;
+        padding: 2.5rem 2rem;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .form-floating > .form-control {
+        padding-left: 3.2rem;
+        border-radius: 1rem;
+        border: 1px solid #e3e6f0;
+        background: #f8fafd;
+        height: 58px;
+        font-size: 1rem;
+    }
+
+        .form-floating > .form-control:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 0 0.2rem rgba(102,166,255,0.1);
+            background: #fff;
+        }
+
+    .form-floating > label {
+        color: #6c757d;
+        font-weight: 500;
+        padding-left: 2.2rem;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #66a6ff;
+        font-size: 1.2rem;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #66a6ff 0%, #89f7fe 100%);
+        border: none;
+        border-radius: 1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 16px rgba(102,166,255,0.15);
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+            box-shadow: 0 6px 24px rgba(102,166,255,0.25);
+        }
+
+    .login-links a {
+        color: #66a6ff;
+        text-decoration: none;
+        margin-right: 1rem;
+    }
+
+        .login-links a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+    @@media (max-width: 576px) {
+        .login-card
+
+    {
+        padding: 1.5rem 1rem;
+    }
+
+    .form-floating > .form-control {
+        height: 48px;
+        font-size: 0.98rem;
+    }
+
+    }
+</style>
+
+<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="login-card">
+        <h2 class="text-center mb-4 fw-bold" style="color:#66a6ff;">@ViewData["Title"]</h2>
+        <hr />
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+            <div class="form-group form-floating mb-3">
+                <span class="input-icon"><i class="bi bi-envelope"></i></span>
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-floating mb-3">
+                <span class="input-icon"><i class="bi bi-lock"></i></span>
+                <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Şifre" />
+                <label asp-for="Input.Password">Şifre</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="Input.RememberMe" />
+                <label class="form-check-label" asp-for="Input.RememberMe">
+                    Beni hatırla
+                </label>
+            </div>
+
+            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary mb-3">Giriş Yap</button>
+
+            <div class="login-links text-center mb-2">
+                <a asp-page="./ForgotPassword">Şifremi unuttum</a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Kayıt Ol</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

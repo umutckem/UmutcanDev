@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UmutcanDev.Presentation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/UmutcanDev.Presentation.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <style>
+        #particles-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            background: transparent;
+        }
+        body > header, body > .container, body > main, body > footer {
+            position: relative;
+            z-index: 2;
+        }
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+
+        .navbar-modern {
+            background: linear-gradient(90deg, #66a6ff 0%, #89f7fe 100%);
+            box-shadow: 0 4px 16px rgba(102,166,255,0.10);
+            border: none;
+        }
+
+        .navbar-brand, .nav-link, .footer a {
+            color: #222 !important;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            border-radius: 0.5rem;
+            transition: background 0.2s, color 0.2s;
+            margin-right: 0.5rem;
+        }
+
+            .nav-link.active, .nav-link:hover {
+                background: rgba(255,255,255,0.25);
+                color: #0056b3 !important;
+            }
+
+        .navbar-brand i {
+            margin-right: 0.5rem;
+            color: #0056b3;
+        }
+
+        .footer {
+            background: transparent;
+            font-size: 0.95rem;
+            color: #6c757d;
+            border: none;
+            margin-top: 2rem;
+        }
+
+            .footer a {
+                color: #66a6ff !important;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+        @@media (max-width: 576px) {
+            .navbar-brand
+
+        {
+            font-size: 1.1rem;
+        }
+
+        .nav-link {
+            font-size: 0.98rem;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-bg"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-modern mb-4">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-lightning-charge-fill"></i> Umutcan Kemahlı
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door"></i> Anasayfa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                <i class="bi bi-shield-lock"></i> Gizlilik
+                            </a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            once: true
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-bg', {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 900 } },
+                "color": { "value": "#1e3c72" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.25, "random": true },
+                "size": { "value": 4, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#2a5298", "opacity": 0.18, "width": 1 },
+                "move": { "enable": true, "speed": 1.2, "direction": "none", "random": false, "straight": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": false }
+                },
+                "modes": {
+                    "repulse": { "distance": 100, "duration": 0.4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

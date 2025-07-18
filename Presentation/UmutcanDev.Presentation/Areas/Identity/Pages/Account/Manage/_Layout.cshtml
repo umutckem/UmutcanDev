@@ -1,0 +1,75 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<style>
+    .manage-header {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #4f8cff;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.5px;
+    }
+
+    .manage-subheader {
+        font-size: 1.15rem;
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+    }
+
+    .manage-nav-card {
+        background: #fff;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 16px rgba(79,140,255,0.08);
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .manage-content-card {
+        background: #fff;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 16px rgba(79,140,255,0.08);
+        padding: 2rem 2rem 1.5rem 2rem;
+        min-height: 350px;
+    }
+    @@media (max-width: 768px) {
+        .manage-content-card, .manage-nav-card
+
+    {
+        padding: 1rem 0.5rem;
+    }
+
+    .manage-header {
+        font-size: 1.3rem;
+    }
+
+    }
+</style>
+
+<div class="container py-4">
+    <div class="manage-header">Hesabını Yönet</div>
+    <div class="manage-subheader">Hesap ayarlarını buradan değiştirebilirsin</div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="manage-nav-card">
+                <partial name="_ManageNav" />
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="manage-content-card">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
