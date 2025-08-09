@@ -4,28 +4,66 @@
     ViewData["Title"] = "Umutcan'ın Portföyü";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/portfolio.css">
+}
+
+<!-- Loading Animation -->
+<div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <h2>Umutcan Kemahlı</h2>
+        <p>Portföy Yükleniyor...</p>
+    </div>
+</div>
+
+<!-- Page Transition -->
+<div id="page-transition" class="page-transition"></div>
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress" class="scroll-progress"></div>
+
+<!-- Cursor Trail - Removed -->
+
+<!-- Main Content -->
+<div data-theme="light">
+
 <!-- Hero Section -->
 <section class="hero-section">
+    <div id="particles-js" class="particles-container"></div>
     <div class="container">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Merhaba, Ben <span class="text-highlight">Umutcan Kemahlı</span></h1>
-                <h2>.NET Geliştirici & Bilgisayar Mühendisi</h2>
-                <p class="lead">Kullanıcı odaklı, yenilikçi ve sürdürülebilir çözümler üretmeye tutkulu bir yazılım profesyoneliyim.</p>
-                <div class="hero-actions">
-                    <a href="#projects" class="btn-primary">Projelerimi Gör</a>
-                    <a href="#contact" class="btn-secondary">İletişim</a>
-                </div>
+                <h1> <span class="text-highlight"><span id="typing-text"></span><span class="cursor">|</span></span></h1>
+                <h2>Bilgisayar Mühendisi</h2>
+                    <p class="lead">Hayallerini satır satır kodlayan bir öğrenci.</p>
+
             </div>
             <div class="hero-image">
                 <div class="profile-image-container">
-                    <img src="https://media.licdn.com/dms/image/v2/D5603AQFBJazvS4ugmQ/profile-displayphoto-shrink_800_800/B56ZR2ebdNGsAc-/0/1737154476540?e=1755734400&v=beta&t=2tgXs0gkACmoyOYpwKoBiQabwAlR7KrodOigKQX8u54" alt="Umutcan Kemahlı" class="profile-image">
+                    <img src="/images/profil.jpg" alt="Umutcan Kemahlı" class="profile-image">
                     <div class="image-border"></div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- Dark Mode Toggle -->
+    <div class="theme-toggle">
+        <button id="theme-toggle" class="theme-toggle-btn">
+            <i class="bi bi-sun-fill" id="sun-icon"></i>
+            <i class="bi bi-moon-fill" id="moon-icon"></i>
+        </button>
+    </div>
 </section>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top-btn">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
+
 
 <!-- About Section -->
 <section class="about-section" id="about">
@@ -38,7 +76,7 @@
         <div class="about-content">
             <div class="about-details">
                 <h3>Yazılım Geliştirici Olarak Yolculuğum</h3>
-                <p>Adana'da yaşayan bir bilgisayar mühendisiyim. .NET ekosistemi ve modern web teknolojileri üzerine uzmanlaşmış bulunuyorum. Problem çözmeyi, temiz kod yazmayı ve sürekli öğrenmeyi seviyorum.</p>
+                    <p>Backend geliştirme alanında C# ve Python ile projeler üretiyor, .NET teknolojileriyle API ve veritabanı tabanlı uygulamalar geliştiriyorum. Sürekli öğrenmeye ve edindiğim bilgileri gerçek dünyada değer üreten projelere dönüştürmeye odaklanıyorum.</p>
 
                 <div class="personal-info">
                     <div class="info-item">
@@ -55,7 +93,9 @@
                     </div>
                     <div class="info-item">
                         <span class="info-label">Email:</span>
-                        <span class="info-value">umutcankemahli637@gmail.com</span>
+                        <span class="info-value">
+                            <a href="mailto:umutcankemahli637@gmail.com" class="email-link">umutcankemahli637@gmail.com</a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -64,37 +104,37 @@
                 <div class="skill-item">
                     <div class="skill-info">
                         <span>ASP.NET Core</span>
-                        <span>90%</span>
+                        <span class="skill-percentage" data-target="90">0%</span>
                     </div>
                     <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%;"></div>
+                        <div class="skill-progress" data-width="90"></div>
                     </div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span>C#</span>
-                        <span>85%</span>
+                            <span>.NET MAUI</span>
+                        <span class="skill-percentage" data-target="85">0%</span>
                     </div>
                     <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%;"></div>
+                        <div class="skill-progress" data-width="85"></div>
                     </div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span>SQL Server</span>
-                        <span>80%</span>
+                            <span>Python</span>
+                        <span class="skill-percentage" data-target="80">0%</span>
                     </div>
                     <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%;"></div>
+                        <div class="skill-progress" data-width="80"></div>
                     </div>
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span>.NET MAUI</span>
-                        <span>75%</span>
+                            <span>SQL Server</span>
+                        <span class="skill-percentage" data-target="75">0%</span>
                     </div>
                     <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%;"></div>
+                        <div class="skill-progress" data-width="75"></div>
                     </div>
                 </div>
             </div>
@@ -111,68 +151,93 @@
         </div>
 
         <div class="skills-grid">
-            <div class="skill-card">
+            <div class="skill-card glow-effect magnetic" data-skill="aspnet">
                 <div class="skill-icon">
                     <i class="bi bi-gear-fill"></i>
                 </div>
                 <h3>ASP.NET MVC</h3>
                 <p>Web uygulamaları geliştirme konusunda deneyimli</p>
+                <div class="skill-level">
+                    <div class="skill-progress-mini" data-level="90"></div>
+                </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card glow-effect magnetic" data-skill="maui">
                 <div class="skill-icon">
                     <i class="bi bi-phone-fill"></i>
                 </div>
                 <h3>.NET MAUI</h3>
                 <p>Cross-platform mobil uygulama geliştirme</p>
+                <div class="skill-level">
+                    <div class="skill-progress-mini" data-level="85"></div>
+                </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card glow-effect magnetic" data-skill="arduino">
                 <div class="skill-icon">
                     <i class="bi bi-cpu-fill"></i>
                 </div>
                 <h3>Arduino</h3>
                 <p>Donanım ve IoT projeleri geliştirme</p>
+                <div class="skill-level">
+                    <div class="skill-progress-mini" data-level="80"></div>
+                </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card glow-effect magnetic" data-skill="cpp">
                 <div class="skill-icon">
                     <i class="bi bi-code-slash"></i>
                 </div>
                 <h3>C++</h3>
                 <p>Algoritma ve sistem programlama</p>
+                <div class="skill-level">
+                    <div class="skill-progress-mini" data-level="75"></div>
+                </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card glow-effect magnetic" data-skill="java">
                 <div class="skill-icon">
                     <i class="bi bi-cup-hot-fill"></i>
                 </div>
                 <h3>Java</h3>
                 <p>OOP ve uygulama geliştirme</p>
+                <div class="skill-level">
+                    <div class="skill-progress-mini" data-level="70"></div>
+                </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card glow-effect magnetic" data-skill="sql">
                 <div class="skill-icon">
                     <i class="bi bi-database-fill"></i>
                 </div>
                 <h3>SQL Server</h3>
                 <p>Veritabanı yönetimi ve optimizasyon</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="bi bi-controller"></i>
+                <div class="skill-level">
+                    <div class="skill-progress-mini" data-level="85"></div>
                 </div>
-                <h3>Unity</h3>
-                <p>Oyun geliştirme ve 3D modelleme</p>
             </div>
 
-            <div class="skill-card">
+                <div class="skill-card glow-effect magnetic" data-skill="python">
+                    <div class="skill-icon">
+                        <i class="bi bi-filetype-py"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <p>Veri işleme, otomasyon ve uygulama geliştirme</p>
+                    <div class="skill-level">
+                        <div class="skill-progress-mini" data-level="80"></div>
+                    </div>
+                </div>
+
+
+            <div class="skill-card glow-effect magnetic" data-skill="aspnetcore">
                 <div class="skill-icon">
                     <i class="bi bi-globe"></i>
                 </div>
                 <h3>ASP.NET Core</h3>
                 <p>Modern Web API geliştirme</p>
+                <div class="skill-level">
+                    <div class="skill-progress-mini" data-level="90"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -186,18 +251,20 @@
             <p>Gerçekleştirdiğim bazı çalışmalar</p>
         </div>
 
-        <div class="projects-grid">
+
+
+        <div class="projects-grid" id="projects-grid">
             @if (Model != null && Model.Any())
             {
                 foreach (var sergi in Model)
                 {
                     if (sergi == null) { continue; }
 
-                    <div class="project-card">
+                    <div class="project-card" data-category="@(sergi.TeknolojilerListesi != null ? string.Join(" ", sergi.TeknolojilerListesi).ToLower() : "")" data-title="@(sergi.ProjeAdi?.ToLower() ?? "")">
                         @if (!string.IsNullOrWhiteSpace(sergi.ResimUrl))
                         {
                             <div class="project-image">
-                                <img src="@sergi.ResimUrl" alt="@sergi.ProjeAdi">
+                                <img src="@sergi.ResimUrl" alt="@sergi.ProjeAdi" loading="lazy">
                             </div>
                         }
                         <div class="project-content">
@@ -258,7 +325,9 @@
                         <i class="bi bi-envelope-fill"></i>
                     </div>
                     <h3>Email</h3>
-                    <p>umutcankemahli637@gmail.com</p>
+                    <p>
+                        <a href="mailto:umutcankemahli637@gmail.com" class="email-link">umutcankemahli637@gmail.com</a>
+                    </p>
                     <a href="mailto:umutcankemahli637@gmail.com" class="contact-link">Mesaj Gönder</a>
                 </div>
 
@@ -283,711 +352,127 @@
             </div>
 
             <div class="contact-form">
-                <form method="post" action="/GeriBildirim/GeriBildirimEkle">
+                <form method="post" action="/GeriBildirim/GeriBildirimEkle" id="contact-form">
                     <div class="form-group">
-                        <input type="text" name="AdSoyad" placeholder="Adınız" required>
+                        <input type="text" name="AdSoyad" id="adSoyad" placeholder="Adınız" required>
+                        <span class="error-message" id="adSoyad-error"></span>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="Email" placeholder="Email Adresiniz" required>
+                        <input type="email" name="Email" id="email" placeholder="Email Adresiniz" required>
+                        <span class="error-message" id="email-error"></span>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Konu" placeholder="Konu">
+                        <input type="text" name="Konu" id="konu" placeholder="Konu">
+                        <span class="error-message" id="konu-error"></span>
                     </div>
                     <div class="form-group">
-                        <textarea name="Mesaj" placeholder="Mesajınız" required></textarea>
+                        <textarea name="Mesaj" id="mesaj" placeholder="Mesajınız" required></textarea>
+                        <span class="error-message" id="mesaj-error"></span>
                     </div>
-                    <button type="submit" class="submit-btn">Mesaj Gönder</button>
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span class="btn-text">Mesaj Gönder</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="bi bi-arrow-clockwise"></i> Gönderiliyor...
+                        </span>
+                    </button>
                 </form>
             </div>
 
         </div>
     </div>
 </section>
+</div>
 
-<style>
-    :root {
-        --primary-color: #4361ee;
-        --primary-light: #4895ef;
-        --secondary-color: #3f37c9;
-        --dark-color: #1a1a2e;
-        --light-color: #f8f9fa;
-        --text-color: #333;
-        --text-light: #6c757d;
-        --bg-light: #f8f9fa;
-        --border-radius: 8px;
-        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        --transition: all 0.3s ease;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        color: var(--text-color);
-        line-height: 1.6;
-        background-color: #fff;
-    }
-
-    .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    /* Hero Section */
-    .hero-section {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
-        padding: 100px 0;
-    }
-
-    .hero-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 50px;
-    }
-
-    .hero-text {
-        flex: 1;
-    }
-
-    .hero-image {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-    }
-
-    .hero-section h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        line-height: 1.2;
-    }
-
-    .hero-section h2 {
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin-bottom: 25px;
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-section .lead {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-        max-width: 600px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    .text-highlight {
-        color: #4cc9f0;
-    }
-
-    .hero-actions {
-        display: flex;
-        gap: 15px;
-    }
-
-    .btn-primary {
-        display: inline-block;
-        padding: 12px 30px;
-        background-color: var(--primary-light);
-        color: white;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: var(--transition);
-        border: 2px solid var(--primary-light);
-    }
-
-        .btn-primary:hover {
-            background-color: transparent;
-            transform: translateY(-3px);
-        }
-
-    .btn-secondary {
-        display: inline-block;
-        padding: 12px 30px;
-        background-color: transparent;
-        color: white;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: var(--transition);
-        border: 2px solid white;
-    }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-        }
-
-    .profile-image-container {
-        position: relative;
-        width: 300px;
-        height: 300px;
-    }
-
-    .profile-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 10px solid rgba(255, 255, 255, 0.1);
-        position: relative;
-        z-index: 2;
-    }
-
-    .image-border {
-        position: absolute;
-        top: -15px;
-        left: -15px;
-        right: -15px;
-        bottom: -15px;
-        border: 5px solid var(--primary-light);
-        border-radius: 50%;
-        animation: pulse 3s infinite;
-    }
-
-    @@keyframes pulse {
-        0%
-
-    {
-        transform: scale(1);
-        opacity: 0.7;
-    }
-
-    50% {
-        transform: scale(1.05);
-        opacity: 0.4;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 0.7;
-    }
-
-    }
-
-    /* About Section */
-    .about-section {
-        padding: 100px 0;
-        background-color: var(--bg-light);
-    }
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 60px;
-    }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 10px;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-        }
-
-    .about-content {
-        display: flex;
-        gap: 50px;
-        align-items: center;
-    }
-
-    .about-details {
-        flex: 1;
-    }
-
-        .about-details h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--dark-color);
-        }
-
-        .about-details p {
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-    .personal-info {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    .info-item {
-        margin-bottom: 15px;
-    }
-
-    .info-label {
-        font-weight: 600;
-        color: var(--dark-color);
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .info-value {
-        color: var(--text-light);
-    }
-
-    .skills-chart {
-        flex: 1;
-    }
-
-    .skill-item {
-        margin-bottom: 25px;
-    }
-
-    .skill-info {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-    }
-
-        .skill-info span:first-child {
-            font-weight: 600;
-        }
-
-        .skill-info span:last-child {
-            color: var(--text-light);
-        }
-
-    .skill-bar {
-        height: 8px;
-        background-color: #e9ecef;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .skill-progress {
-        height: 100%;
-        background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-        border-radius: 4px;
-    }
-
-    /* Skills Section */
-    .skills-section {
-        padding: 100px 0;
-        background-color: white;
-    }
-
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 30px;
-    }
-
-    .skill-card {
-        background-color: white;
-        border-radius: var(--border-radius);
-        padding: 30px;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-        text-align: center;
-    }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-    .skill-icon {
-        width: 70px;
-        height: 70px;
-        margin: 0 auto 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(67, 97, 238, 0.1);
-        border-radius: 50%;
-        color: var(--primary-color);
-        font-size: 30px;
-    }
-
-    .skill-card h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-    }
-
-    .skill-card p {
-        color: var(--text-light);
-        font-size: 0.95rem;
-    }
-
-    /* Projects Section */
-    .projects-section {
-        padding: 100px 0;
-        background-color: var(--bg-light);
-    }
-
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 30px;
-    }
-
-    .project-card {
-        background-color: white;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-    }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-    .project-image {
-        height: 200px;
-        overflow: hidden;
-    }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-    .project-card:hover .project-image img {
-        transform: scale(1.05);
-    }
-
-    .project-content {
-        padding: 25px;
-    }
-
-        .project-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--dark-color);
-        }
-
-        .project-content p {
-            color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-    .project-tech {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 20px;
-    }
-
-        .project-tech span {
-            background-color: rgba(67, 97, 238, 0.1);
-            color: var(--primary-color);
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-    .project-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 15px;
-        border-top: 1px solid #eee;
-    }
-
-    .project-date {
-        color: var(--text-light);
-        font-size: 0.9rem;
-    }
-
-    .project-link {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 600;
-        transition: var(--transition);
-    }
-
-        .project-link:hover {
-            color: var(--secondary-color);
-        }
-
-    .no-projects {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 50px 0;
-    }
-
-        .no-projects i {
-            font-size: 3rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        .no-projects p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-    /* Contact Section */
-    .contact-section {
-        padding: 100px 0;
-        background-color: white;
-    }
-
-    .contact-content {
-        display: flex;
-        gap: 50px;
-    }
-
-    .contact-info {
-        flex: 1;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .contact-form {
-        flex: 1;
-    }
-
-    .contact-card {
-        background-color: white;
-        border-radius: var(--border-radius);
-        padding: 30px;
-        box-shadow: var(--box-shadow);
-        text-align: center;
-    }
-
-    .contact-icon {
-        width: 70px;
-        height: 70px;
-        margin: 0 auto 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(67, 97, 238, 0.1);
-        border-radius: 50%;
-        color: var(--primary-color);
-        font-size: 30px;
-    }
-
-    .contact-card h3 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        color: var(--dark-color);
-    }
-
-    .contact-card p {
-        color: var(--text-light);
-        margin-bottom: 15px;
-    }
-
-    .contact-link {
-        display: inline-block;
-        color: var(--primary-color);
-        font-weight: 600;
-        text-decoration: none;
-        transition: var(--transition);
-    }
-
-        .contact-link:hover {
-            color: var(--secondary-color);
-        }
-
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .social-link {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        color: white;
-        transition: var(--transition);
-    }
-
-        .social-link.linkedin {
-            background-color: #0a66c2;
-        }
-
-        .social-link.github {
-            background-color: #333;
-        }
-
-        .social-link.instagram {
-            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-        }
-
-        .social-link:hover {
-            transform: translateY(-3px);
-        }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-            .form-group input:focus,
-            .form-group textarea:focus {
-                outline: none;
-                border-color: var(--primary-color);
-                box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-            }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-    .submit-btn {
-        width: 100%;
-        padding: 12px;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: var(--border-radius);
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-    }
-
-        .submit-btn:hover {
-            background-color: var(--secondary-color);
-        }
-
-    /* Icons */
-    .skill-icon i {
-        font-size: 2rem;
-        color: var(--primary-color);
-    }
-
-    .contact-icon i {
-        font-size: 2rem;
-        color: var(--primary-color);
-    }
-
-    .social-link i {
-        font-size: 1.2rem;
-    }
-
-    .project-link i {
-        font-size: 1rem;
-    }
-
-    .no-projects i {
-        font-size: 3rem;
-        color: var(--text-light);
-        margin-bottom: 20px;
-    }
-
-    /* Responsive */
-    @@media (max-width: 992px) {
-        .hero-content
-
-    {
-        flex-direction: column-reverse;
-        text-align: center;
-    }
-
-    .hero-actions {
-        justify-content: center;
-    }
-
-    .about-content {
-        flex-direction: column;
-    }
-
-    .contact-content {
-        flex-direction: column;
-    }
-
-    .profile-image-container {
-        width: 250px;
-        height: 250px;
-    }
-
-    }
-
-    @@media (max-width: 768px) {
-        .hero-section h1
-
-    {
-        font-size: 2.5rem;
-    }
-
-    .hero-section h2 {
-        font-size: 1.3rem;
-    }
-
-    .section-header h2 {
-        font-size: 2rem;
-    }
-
-    .personal-info {
-        grid-template-columns: 1fr;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    }
-
-    @@media (max-width: 576px) {
-        .hero-section
-
-    {
-        padding: 80px 0;
-    }
-
-    .hero-section h1 {
-        font-size: 2rem;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        text-align: center;
-    }
-
-    }
-</style>
-
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Loading Screen
+        const loadingScreen = document.getElementById('loading-screen');
+        
+        // Sayfa yüklendikten 2 saniye sonra loading'i gizle
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 2000);
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeContainer = document.querySelector('[data-theme]');
+        
+        // Local storage'dan tema tercihini al
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        themeContainer.setAttribute('data-theme', currentTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = themeContainer.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            themeContainer.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Typing Animation
+        const typingText = document.getElementById('typing-text');
+        const text = "Umutcan Kemahlı";
+        let index = 0;
+        let isDeleting = false;
+        let typingSpeed = 150; // Yazma hızı (ms)
+        let deletingSpeed = 100; // Silme hızı (ms)
+        let pauseTime = 2000; // Yazıldıktan sonra bekleme süresi (ms)
+
+        function typeWriter() {
+            const currentText = text.substring(0, index);
+            typingText.textContent = currentText;
+
+            if (!isDeleting && index < text.length) {
+                // Yazma işlemi
+                index++;
+                setTimeout(typeWriter, typingSpeed);
+            } else if (!isDeleting && index === text.length) {
+                // Yazma tamamlandı, bekle
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, pauseTime);
+            } else if (isDeleting && index > 0) {
+                // Silme işlemi
+                index--;
+                setTimeout(typeWriter, deletingSpeed);
+            } else if (isDeleting && index === 0) {
+                // Silme tamamlandı, tekrar yazmaya başla
+                isDeleting = false;
+                setTimeout(typeWriter, 500);
+            }
+        }
+
+        // Typing animasyonunu başlat
+        typeWriter();
+
+        // Skill Counter Animation
+        function animateSkillCounters() {
+            const skillPercentages = document.querySelectorAll('.skill-percentage');
+            const skillProgresses = document.querySelectorAll('.skill-progress');
+            
+            skillPercentages.forEach((percentage, index) => {
+                const target = parseInt(percentage.getAttribute('data-target'));
+                const progress = skillProgresses[index];
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += 1;
+                    percentage.textContent = current + '%';
+                    progress.style.width = current + '%';
+                    
+                    if (current >= target) {
+                        clearInterval(timer);
+                    }
+                }, 30);
+            });
+        }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1008,6 +493,7 @@
         // Animation on scroll
         const animateOnScroll = function() {
             const elements = document.querySelectorAll('.skill-card, .project-card, .contact-card');
+            const aboutSection = document.querySelector('.about-section');
 
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -1018,6 +504,20 @@
                     element.style.transform = 'translateY(0)';
                 }
             });
+
+            // Skill counter animasyonunu tetikle
+            if (aboutSection) {
+                const aboutPosition = aboutSection.getBoundingClientRect().top;
+                const aboutScreenPosition = window.innerHeight / 1.5;
+                
+                if (aboutPosition < aboutScreenPosition) {
+                    // Sayaç animasyonunu sadece bir kez çalıştır
+                    if (!window.skillCountersAnimated) {
+                        animateSkillCounters();
+                        window.skillCountersAnimated = true;
+                    }
+                }
+            }
         };
 
         // Set initial state
@@ -1030,5 +530,461 @@
 
         window.addEventListener('scroll', animateOnScroll);
         animateOnScroll(); // Run once on load
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
+
+        // Contact Form Validation
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+
+        // Real-time validation
+        const inputs = contactForm.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', validateField);
+            input.addEventListener('input', clearError);
+        });
+
+        function validateField(e) {
+            const field = e.target;
+            const value = field.value.trim();
+            const errorElement = document.getElementById(field.id + '-error');
+            
+            // Clear previous states
+            field.classList.remove('error', 'success');
+            errorElement.classList.remove('show');
+            errorElement.textContent = '';
+
+            // Validation rules
+            if (field.hasAttribute('required') && !value) {
+                showError(field, errorElement, 'Bu alan zorunludur');
+                return false;
+            }
+
+            if (field.type === 'email' && value) {
+                const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+                if (!emailRegex.test(value)) {
+                    showError(field, errorElement, 'Geçerli bir email adresi giriniz');
+                    return false;
+                }
+            }
+
+            if (field.id === 'adSoyad' && value.length < 2) {
+                showError(field, errorElement, 'Ad soyad en az 2 karakter olmalıdır');
+                return false;
+            }
+
+            if (field.id === 'mesaj' && value.length < 10) {
+                showError(field, errorElement, 'Mesaj en az 10 karakter olmalıdır');
+                return false;
+            }
+
+            // Success state
+            if (value) {
+                field.classList.add('success');
+            }
+
+            return true;
+        }
+
+        function showError(field, errorElement, message) {
+            field.classList.add('error');
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+
+        function clearError(e) {
+            const field = e.target;
+            const errorElement = document.getElementById(field.id + '-error');
+            
+            field.classList.remove('error');
+            errorElement.classList.remove('show');
+        }
+
+        // Form submission
+        contactForm.addEventListener('submit', function(e) {
+            // Validate all fields
+            let isValid = true;
+            inputs.forEach(input => {
+                if (!validateField({ target: input })) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                return;
+            }
+
+            // Show loading state
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'flex';
+            submitBtn.disabled = true;
+
+            // Form is valid, let it submit naturally
+            // The form will submit to /GeriBildirim/GeriBildirimEkle
+            showNotification('Form gönderiliyor...', 'info');
+        });
+
+        // Page Transitions
+        function triggerPageTransition() {
+            const transition = document.getElementById('page-transition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                transition.classList.remove('active');
+            }, 500);
+        }
+
+        // Trigger transition on internal links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                triggerPageTransition();
+                
+                setTimeout(() => {
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 250);
+            });
+        });
+
+        // Scroll Progress Bar
+        const scrollProgress = document.getElementById('scroll-progress');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Particles.js Configuration
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: '#ffffff'
+                    },
+                    shape: {
+                        type: 'circle'
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: false
+                    },
+                    size: {
+                        value: 3,
+                        random: true
+                    },
+                    links: {
+                        enable: true,
+                        distance: 150,
+                        color: '#ffffff',
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        outMode: 'out',
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detectOn: 'canvas',
+                    events: {
+                        onHover: {
+                            enable: true,
+                            mode: 'repulse'
+                        },
+                        onClick: {
+                            enable: true,
+                            mode: 'push'
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        repulse: {
+                            distance: 100,
+                            duration: 0.4
+                        },
+                        push: {
+                            particlesNb: 4
+                        }
+                    }
+                },
+                retinaDetect: true
+            });
+        }
+
+
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = 'notification notification-' + type;
+            const iconClass = type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info-circle';
+            notification.innerHTML = '<i class="bi bi-' + iconClass + '"></i><span>' + message + '</span>';
+            
+            document.body.appendChild(notification);
+            
+            // Animasyon
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Otomatik kaldır
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Magnetic Effect
+        const magneticElements = document.querySelectorAll('.magnetic');
+        
+        magneticElements.forEach(element => {
+            element.addEventListener('mousemove', (e) => {
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                element.style.transform = 'translate(' + (x * 0.1) + 'px, ' + (y * 0.1) + 'px)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Text Reveal Animation
+        const textRevealElements = document.querySelectorAll('.text-reveal');
+        
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const textObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+        
+        textRevealElements.forEach(element => {
+            textObserver.observe(element);
+        });
+
+        // Glow Effect
+        const glowElements = document.querySelectorAll('.glow-effect');
+        
+        glowElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'scale(1.05)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'scale(1)';
+            });
+        });
+
+        // Cursor Trail Effect - Removed
+
+        // Skill Progress Animation
+        function animateSkillProgress() {
+            const skillProgresses = document.querySelectorAll('.skill-progress-mini');
+            
+            skillProgresses.forEach(progress => {
+                const level = progress.getAttribute('data-level');
+                progress.style.width = level + '%';
+            });
+        }
+
+        // Trigger skill progress animation when skills section is visible
+        const skillsSection = document.querySelector('.skills-section');
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillProgress();
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (skillsSection) {
+            skillsObserver.observe(skillsSection);
+        }
+
+        // Enhanced Skill Card Interactions
+        const skillCards = document.querySelectorAll('.skill-card');
+        
+        skillCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const skill = card.getAttribute('data-skill');
+                showNotification(skill.toUpperCase() + ' yeteneği aktif!', 'info');
+            });
+        });
+
+        // Text Reveal for Section Headers
+        const sectionHeaders = document.querySelectorAll('.section-header h2');
+        sectionHeaders.forEach(header => {
+            header.classList.add('text-reveal');
+        });
+
+        // Add floating animation to profile image
+        const profileImage = document.querySelector('.profile-image-container');
+        if (profileImage) {
+            profileImage.classList.add('floating-element');
+        }
+
+        // Add gradient text effect to hero title
+        const heroTitle = document.querySelector('.hero-section h1');
+        if (heroTitle) {
+            heroTitle.classList.add('gradient-text');
+        }
+
+        // Add 3D effect to project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.classList.add('card-3d');
+        });
+
+        // Add ripple effect to buttons
+        const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .submit-btn');
+        buttons.forEach(button => {
+            button.classList.add('ripple-effect');
+        });
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'Escape':
+                    // Close any open modals or notifications
+                    const notifications = document.querySelectorAll('.notification');
+                    notifications.forEach(notification => notification.remove());
+                    break;
+                case 'd':
+                    if (e.ctrlKey) {
+                        e.preventDefault();
+                        // Toggle dark mode
+                        const themeContainer = document.querySelector('[data-theme]');
+                        const currentTheme = themeContainer.getAttribute('data-theme');
+                        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                        themeContainer.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('theme', newTheme);
+                        showNotification('Tema değiştirildi: ' + newTheme, 'info');
+                    }
+                    break;
+            }
+        });
+
+        // Performance Optimization: Throttle scroll events
+        let ticking = false;
+        function updateOnScroll() {
+            // Scroll-based animations
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Email Link Interactions
+        const emailLinks = document.querySelectorAll('.email-link');
+        
+        emailLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Copy email to clipboard
+                const email = link.textContent;
+                navigator.clipboard.writeText(email).then(() => {
+                    showNotification('Email adresi kopyalandı!', 'success');
+                }).catch(() => {
+                    // Fallback: open mail client
+                    window.location.href = 'mailto:' + email;
+                });
+            });
+            
+            // Add tooltip on hover
+            link.addEventListener('mouseenter', () => {
+                link.title = 'Tıklayarak kopyala veya mail uygulamasını aç';
+            });
+        });
+
+        // Social Media Link Interactions
+        const socialLinks = document.querySelectorAll('.social-link');
+        
+        console.log('Found social links:', socialLinks.length);
+        
+        socialLinks.forEach((link, index) => {
+            console.log(`Social link ${index}:`, link.href, link.classList.toString());
+            
+            // Add tooltip on hover
+            link.addEventListener('mouseenter', () => {
+                const platform = link.classList.contains('linkedin') ? 'LinkedIn' : 
+                               link.classList.contains('github') ? 'GitHub' : 
+                               link.classList.contains('instagram') ? 'Instagram' : 'Sosyal Medya';
+                link.title = platform + ' profilimi ziyaret et';
+                console.log('Mouse entered:', platform);
+            });
+            
+            // Add click feedback
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const platform = link.classList.contains('linkedin') ? 'LinkedIn' : 
+                               link.classList.contains('github') ? 'GitHub' : 
+                               link.classList.contains('instagram') ? 'Instagram' : 'Sosyal Medya';
+                console.log('Clicked:', platform, link.href);
+                showNotification(platform + ' profilime yönlendiriliyorsunuz...', 'info');
+                
+                // Open link after a short delay
+                setTimeout(() => {
+                    window.open(link.href, '_blank');
+                }, 500);
+            });
+        });
     });
 </script>
+}

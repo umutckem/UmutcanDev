@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/UmutcanDev.Presentation.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    @await RenderSectionAsync("Styles", required: false)
     <style>
         #particles-bg {
             position: fixed;
@@ -109,7 +110,7 @@
                             </a>
                         </li>
                     </ul>
-                     <partial name="_LoginPartial" />
+                     
                 </div>
             </div>
         </nav>
