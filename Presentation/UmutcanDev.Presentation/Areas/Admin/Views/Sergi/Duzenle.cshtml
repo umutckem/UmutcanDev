@@ -1,0 +1,142 @@
+﻿@model UmutcanDev.Core.Model.Sergi
+@{
+    ViewData["Title"] = "Sergi Düzenle";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .page-container {
+        padding: 40px;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        padding: 25px;
+    }
+
+    .preview-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .preview-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .preview-img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .btn-modern {
+        background: linear-gradient(90deg, #007bff, #00c6ff);
+        color: white;
+        border: none;
+        transition: background 0.3s ease;
+    }
+
+        .btn-modern:hover {
+            background: linear-gradient(90deg, #0062cc, #00aaff);
+        }
+
+    .tech-badge {
+        background: #e9f5ff;
+        color: #0d6efd;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin: 2px;
+        display: inline-block;
+    }
+</style>
+
+<div class="page-container">
+    <div class="row g-4">
+        <!-- Form Alanı -->
+        <div class="col-lg-7">
+            <div class="form-card">
+                <h3 class="mb-4">Sergi Düzenle</h3>
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Proje Adı</label>
+                        <input type="text" class="form-control" name="ProjeAdi" value="@Model.ProjeAdi" placeholder="Proje adını girin">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Açıklama</label>
+                        <textarea class="form-control" name="Aciklama" rows="4" placeholder="Proje açıklaması">@Model.Aciklama</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Github URL</label>
+                        <input type="text" class="form-control" name="GithubUrl" value="@Model.GithubUrl" placeholder="https://github.com/...">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Resim URL</label>
+                        <input type="text" class="form-control" name="ResimUrl" value="@Model.ResimUrl" placeholder="https://...">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Teknolojiler (Virgülle ayırın)</label>
+                        <input type="text" class="form-control" name="Teknolojiler" value="@Model.Teknolojiler" placeholder="C#, .NET, SQL">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Oluşturma Tarihi</label>
+                        <input type="date" class="form-control" name="OlusturmaTarihi" value="@(Model.OlusturmaTarihi?.ToString("yyyy-MM-dd"))">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Durum</label>
+                        <select class="form-select" name="Durum">
+                            <option value="">Seçiniz</option>
+                            <option value="Aktif" @(Model.Durum == "Aktif" ? "selected" : "")>Aktif</option>
+                            <option value="Pasif" @(Model.Durum == "Pasif" ? "selected" : "")>Pasif</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-modern px-4">Kaydet</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Önizleme -->
+        <div class="col-lg-5">
+            <div class="preview-card">
+                <img src="@Model.ResimUrl" class="preview-img" alt="Proje Resmi">
+                <div class="p-3">
+                    <h5>@Model.ProjeAdi</h5>
+                    <p class="text-muted">@Model.Aciklama</p>
+                    <div class="mb-2">
+                        @foreach (var tech in Model.TeknolojilerListesi)
+                        {
+                            <span class="tech-badge">@tech</span>
+                        }
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.GithubUrl))
+                    {
+                        <a href="@Model.GithubUrl" target="_blank" class="btn btn-sm btn-outline-primary">GitHub</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

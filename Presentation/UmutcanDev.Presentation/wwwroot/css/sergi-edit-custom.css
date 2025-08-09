@@ -1,0 +1,394 @@
+﻿/* =========================================
+   Modern Sergi Düzenle Sayfası Tasarımı
+   By: UmutcanDev Custom UI
+   Versiyon: 1.0
+   ========================================= */
+
+/* ----------- GLOBAL AYARLAR ----------- */
+body {
+    background: linear-gradient(135deg, #eef2f7 0%, #dbeafe 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1e293b;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* ----------- KART TASARIMI ----------- */
+.card {
+    border-radius: 20px;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+    }
+
+.card-header {
+    background: linear-gradient(90deg, #1976d2, #42a5f5);
+    color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 1.4rem;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Header animasyon efekti */
+    .card-header::after {
+        content: "";
+        position: absolute;
+        bottom: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.08) 20%, transparent 20%);
+        background-size: 20px 20px;
+        animation: pulseBg 5s linear infinite;
+    }
+
+@keyframes pulseBg {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card-body {
+    background: #ffffff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 2.5rem;
+}
+
+/* ----------- FORM ELEMANLARI ----------- */
+.form-label {
+    color: #1769aa;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+    .form-label::before {
+        content: "▹";
+        color: #42a5f5;
+        font-size: 1rem;
+    }
+
+/* Input & Select */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #b2c8df;
+    min-height: 44px;
+    font-size: 1.05rem;
+    transition: all 0.25s ease-in-out;
+    background: #f9fbfd;
+    padding: 0.6rem 0.8rem;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #42a5f5;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(66, 165, 245, 0.25);
+    }
+
+/* Textarea */
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Placeholder renk */
+::placeholder {
+    color: #94a3b8;
+}
+
+/* ----------- BUTONLAR ----------- */
+.btn-primary {
+    background: linear-gradient(90deg, #1976d2, #42a5f5);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    box-shadow: 0 3px 10px rgba(33, 150, 243, 0.2);
+    transition: all 0.25s ease-in-out;
+    padding: 10px 22px;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background: linear-gradient(90deg, #1565c0, #1e88e5);
+        transform: translateY(-1px);
+    }
+
+.btn-secondary {
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 10px 22px;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    transition: all 0.25s ease-in-out;
+}
+
+    .btn-secondary:hover {
+        background-color: #e2e8f0;
+    }
+
+/* Buton animasyonu */
+.btn-primary, .btn-secondary {
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-primary::after, .btn-secondary::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.2);
+        transition: left 0.3s ease;
+    }
+
+    .btn-primary:hover::after, .btn-secondary:hover::after {
+        left: 0;
+    }
+
+/* ----------- RESİM ÖNİZLEME ----------- */
+.img-thumbnail {
+    border-radius: 12px;
+    border: 2px solid #90caf9;
+    background: #f0f9ff;
+    margin-bottom: 0.5rem;
+    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease;
+}
+
+    .img-thumbnail:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+    }
+
+/* ----------- TOOLTIP ----------- */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+    .tooltip .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        background-color: #0f172a;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 6px 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: opacity 0.3s;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+
+/* ----------- RESPONSIVE ----------- */
+@media (max-width: 991px) {
+    .card-body {
+        padding: 1.8rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-body {
+        padding: 1.2rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-label {
+        font-size: 0.95rem;
+    }
+
+    .form-control, .form-select {
+        font-size: 0.95rem;
+    }
+}
+
+/* ----------- EKSTRA ANİMASYONLAR ----------- */
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ----------- FORM GRUP AYARLARI ----------- */
+.form-group {
+    margin-bottom: 1.4rem;
+}
+
+/* ----------- YARDIM METİNLERİ ----------- */
+.form-text {
+    font-size: 0.88rem;
+    color: #64748b;
+}
+
+/* ----------- HATA MESAJLARI ----------- */
+.text-danger {
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* ----------- TABLO GÖRÜNÜMÜ ----------- */
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+    .table-custom th, .table-custom td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    .table-custom th {
+        background-color: #f1f5f9;
+        color: #0f172a;
+    }
+
+    .table-custom tr:nth-child(even) {
+        background-color: #f9fafb;
+    }
+
+    .table-custom tr:hover {
+        background-color: #e0f2fe;
+    }
+
+/* ----------- ALERT MESAJLARI ----------- */
+.alert-custom {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.alert-success {
+    background-color: #ecfdf5;
+    color: #047857;
+}
+
+.alert-danger {
+    background-color: #fef2f2;
+    color: #b91c1c;
+}
+
+.alert-info {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+}
+
+/* ----------- LOADING SPINNER ----------- */
+.spinner {
+    border: 3px solid #e2e8f0;
+    border-top: 3px solid #42a5f5;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ----------- MODAL ----------- */
+.modal-custom {
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content-custom {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* ----------- FOOTER ----------- */
+.footer-custom {
+    text-align: center;
+    padding: 1rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
