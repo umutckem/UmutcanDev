@@ -6,7 +6,7 @@
 
 @section Styles {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="~/css/portfolio.css">
+    <link rel="stylesheet" href="~/css/portfolio.css" asp-append-version="true">
 }
 
 <!-- Loading Animation -->
@@ -27,7 +27,7 @@
 <!-- Cursor Trail - Removed -->
 
 <!-- Main Content -->
-<div data-theme="light">
+<div id="page-root">
 
 <!-- Hero Section -->
 <section class="hero-section">
@@ -400,7 +400,7 @@
 
         // Dark Mode Toggle
         const themeToggle = document.getElementById('theme-toggle');
-        const themeContainer = document.querySelector('[data-theme]');
+        const themeContainer = document.documentElement;
         
         // Local storage'dan tema tercihini al
         const currentTheme = localStorage.getItem('theme') || 'light';
@@ -903,7 +903,7 @@
                     if (e.ctrlKey) {
                         e.preventDefault();
                         // Toggle dark mode
-                        const themeContainer = document.querySelector('[data-theme]');
+                        const themeContainer = document.documentElement;
                         const currentTheme = themeContainer.getAttribute('data-theme');
                         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                         themeContainer.setAttribute('data-theme', newTheme);

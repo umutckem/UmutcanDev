@@ -31,7 +31,7 @@
     box-sizing: border-box;
 }
 
-[data-theme] {
+[data-theme], html[data-theme] {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     color: var(--text-color);
     line-height: 1.6;
@@ -321,8 +321,26 @@
 }
 
 /* Dark Mode Additional Styles */
-[data-theme="dark"] {
-    background-color: var(--light-color);
+/* Ensure full page background respects dark theme to edges */
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+    background: linear-gradient(120deg, #0b1020 0%, #111827 100%);
+}
+
+/* Dark scrollbar to avoid white gutters */
+html[data-theme="dark"]::-webkit-scrollbar {
+    width: 12px;
+}
+html[data-theme="dark"]::-webkit-scrollbar-track {
+    background: #0b1020;
+}
+html[data-theme="dark"]::-webkit-scrollbar-thumb {
+    background-color: #374151;
+    border-radius: 6px;
+    border: 3px solid #0b1020;
+}
+html[data-theme="dark"] {
+    scrollbar-color: #374151 #0b1020;
 }
 
 [data-theme="dark"] .hero-section {
@@ -330,11 +348,58 @@
 }
 
 [data-theme="dark"] .about-section {
-    background-color: var(--bg-light);
+    background-color: #0b1325 !important;
 }
 
 [data-theme="dark"] .skills-section {
-    background-color: var(--light-color);
+    background-color: #0b1325 !important;
+}
+
+/* Improve readability in dark mode for Skills section */
+html[data-theme="dark"] .skills-section,
+html[data-theme="dark"] .skills-section * {
+    color: inherit;
+}
+html[data-theme="dark"] .skills-section .skill-card {
+    background: #0f172a !important; /* override gradient backgrounds */
+    border: 1px solid #334155;
+    color: #e5e7eb;
+}
+html[data-theme="dark"] .skills-section .skill-card h3 {
+    color: #f3f4f6;
+    font-weight: 700;
+}
+html[data-theme="dark"] .skills-section .skill-card p {
+    color: #cbd5e1;
+}
+html[data-theme="dark"] .skills-section .skill-icon {
+    background-color: rgba(147, 197, 253, 0.12);
+    color: #93c5fd;
+}
+html[data-theme="dark"] .skills-section .skill-info span:first-child {
+    color: #e5e7eb;
+}
+html[data-theme="dark"] .skills-section .skill-info span:last-child {
+    color: #93c5fd;
+}
+html[data-theme="dark"] .skills-section .skill-level {
+    background: rgba(255,255,255,0.08);
+}
+html[data-theme="dark"] .skills-section .skill-progress-mini {
+    background: linear-gradient(90deg, #60a5fa, #818cf8);
+}
+
+/* Global fallback to ensure all skill cards darken in dark mode */
+html[data-theme="dark"] .skill-card {
+    background: #0f172a !important;
+    border: 1px solid #334155;
+    color: #e5e7eb;
+}
+html[data-theme="dark"] .skill-card h3 { color: #f3f4f6; }
+html[data-theme="dark"] .skill-card p { color: #cbd5e1; }
+html[data-theme="dark"] .skill-card .skill-icon {
+    background-color: rgba(147, 197, 253, 0.12);
+    color: #93c5fd;
 }
 
 [data-theme="dark"] .projects-section {
@@ -346,10 +411,7 @@
 }
 
 /* Dark mode body and html */
-[data-theme="dark"] body,
-[data-theme="dark"] html {
-    background-color: var(--light-color);
-}
+/* Remove previous generic background-color to prevent white edges */
 
 /* Dark mode container backgrounds */
 [data-theme="dark"] .container {
@@ -410,6 +472,22 @@
 [data-theme="dark"] .contact-card h3 {
     color: var(--text-color);
 }
+
+/* Improve About section readability in dark mode */
+html[data-theme="dark"] .about-section .section-header h2 { color: #f3f4f6; }
+html[data-theme="dark"] .about-section .section-header p { color: #cbd5e1; }
+html[data-theme="dark"] .about-section .about-details p { color: #cbd5e1; }
+html[data-theme="dark"] .about-section .info-label { color: #e5e7eb; }
+html[data-theme="dark"] .about-section .info-value { color: #d1d5db; }
+html[data-theme="dark"] .about-section .personal-info .info-item {
+    border-bottom: 1px solid #334155;
+    padding-bottom: 10px;
+}
+/* Dark mode readability for About → Skills chart */
+html[data-theme="dark"] .about-section .skill-info span:first-child { color: #e5e7eb; }
+html[data-theme="dark"] .about-section .skill-percentage { color: #93c5fd; }
+html[data-theme="dark"] .about-section .skill-bar { background-color: #1f2937; }
+html[data-theme="dark"] .about-section .skill-progress { background: linear-gradient(90deg, #60a5fa, #818cf8); }
 
 [data-theme="dark"] .about-details p,
 [data-theme="dark"] .skill-card p,

@@ -1,9 +1,17 @@
 ﻿<!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - UmutcanDev.Presentation</title>
+    <script>
+        (function() {
+            try {
+                var savedTheme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } catch (e) { }
+        })();
+    </script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -22,15 +30,51 @@
             position: relative;
             z-index: 2;
         }
+        html {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+        }
         body {
             background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
             min-height: 100vh;
+            margin: 0;
+            padding-bottom: 60px;
         }
 
         .navbar-modern {
             background: linear-gradient(90deg, #66a6ff 0%, #89f7fe 100%);
             box-shadow: 0 4px 16px rgba(102,166,255,0.10);
             border: none;
+        }
+
+        /* Dark theme overrides for layout shell */
+        html[data-theme="dark"],
+        html[data-theme="dark"] body {
+            background: linear-gradient(120deg, #0b1020 0%, #111827 100%);
+        }
+
+        html[data-theme="dark"] .navbar-modern {
+            background: linear-gradient(90deg, #0f172a 0%, #1f2937 100%);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.40);
+        }
+
+        html[data-theme="dark"] .navbar-brand,
+        html[data-theme="dark"] .nav-link,
+        html[data-theme="dark"] .footer a {
+            color: #e5e7eb !important;
+        }
+
+        html[data-theme="dark"] .nav-link.active,
+        html[data-theme="dark"] .nav-link:hover {
+            background: rgba(255,255,255,0.08);
+            color: #93c5fd !important;
+        }
+
+        html[data-theme="dark"] .navbar-brand i {
+            color: #93c5fd;
+        }
+
+        html[data-theme="dark"] .footer {
+            color: #9ca3af;
         }
 
         .navbar-brand, .nav-link, .footer a {
