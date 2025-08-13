@@ -50,11 +50,14 @@
     </div>
     
     <!-- Dark Mode Toggle -->
-    <div class="theme-toggle">
-        <button id="theme-toggle" class="theme-toggle-btn">
-            <i class="bi bi-sun-fill" id="sun-icon"></i>
-            <i class="bi bi-moon-fill" id="moon-icon"></i>
-        </button>
+    <div class="theme-toggle" aria-label="Tema Değiştir">
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle" />
+            <span class="slider">
+                <i class="bi bi-sun-fill" aria-hidden="true"></i>
+                <i class="bi bi-moon-fill" aria-hidden="true"></i>
+            </span>
+        </label>
     </div>
 </section>
 
@@ -405,11 +408,11 @@
         // Local storage'dan tema tercihini al
         const currentTheme = localStorage.getItem('theme') || 'light';
         themeContainer.setAttribute('data-theme', currentTheme);
+        // Switch pozisyonu
+        themeToggle.checked = currentTheme === 'dark';
         
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = themeContainer.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
+        themeToggle.addEventListener('change', () => {
+            const newTheme = themeToggle.checked ? 'dark' : 'light';
             themeContainer.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
@@ -903,11 +906,11 @@
                     if (e.ctrlKey) {
                         e.preventDefault();
                         // Toggle dark mode
-                        const themeContainer = document.documentElement;
                         const currentTheme = themeContainer.getAttribute('data-theme');
                         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                         themeContainer.setAttribute('data-theme', newTheme);
                         localStorage.setItem('theme', newTheme);
+                        themeToggle.checked = newTheme === 'dark';
                         showNotification('Tema değiştirildi: ' + newTheme, 'info');
                     }
                     break;
